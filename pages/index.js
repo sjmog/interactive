@@ -12,6 +12,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <p>Press "S" to make a note of the current content.</p>
+        <p>Press "Enter" to review all the notes you made.</p>
         <App />
       </main>
 

@@ -1,5 +1,6 @@
 .Caption {
   position: relative;
+  display: none;
 }
 
 .CaptionCurrent {
@@ -11,5 +12,24 @@
     content: "!";
     position: absolute;
     left: -2rem;
+  }
+}
+
+.CaptionVisible {
+  display: block;
+}
+
+.Caption--review {
+  margin-bottom: 2rem;
+  text-indent: 1rem;
+
+  &:before {
+    content: "...";
+    position: inline-block;
+    left: -1rem;
+  }
+
+  &:after {
+    content: "..."
   }
 }

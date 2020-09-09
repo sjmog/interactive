@@ -22,6 +22,7 @@ export default function Script(props) {
                 progress={props.progress}
                 saved={props.saved}
                 start={parseFloat(caption.$.start)}
+                mode={props.mode}
                 end={parseFloat(caption.$.start) + parseFloat(caption.$.dur)} />)
     })
   }
@@ -39,7 +40,7 @@ export default function Script(props) {
   }, [props.progress, props.saved])
 
   return(
-    <article className={`${styles.Script} ${props.className}`}>
+    <article className={`${styles.Script} ${styles["Script-" + props.mode]} ${props.className}`}>
       { captionComponents() }
     </article>
   );
