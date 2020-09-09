@@ -11,10 +11,16 @@ export default function App(props) {
   const [saved, setSaved] = useState([]);
   const [mode, setMode] = useState('watch');
 
+  const [seekTo, setSeekTo] = useState(null);
+
   const toggleMode = () => setMode(mode === 'watch' ? 'review' : 'watch')
 
   const onProgress = (progress) => {
     setProgress(progress.playedSeconds);
+  }
+
+  const onCaptionClick = (time) => {
+    setSeekTo(time);
   }
 
   useEffect(() => {
@@ -40,8 +46,8 @@ export default function App(props) {
       <UrlInput onChange={setId} id={id} />
       <Instructions />
       <div className={styles.AppContainer}>
-        <Script progress={progress} saved={saved} mode={mode} className={styles.Script} id={id} />
-        <Player onProgress={onProgress} className={styles.Player} id={id} />
+        <Script onCaptionClick={onCaptionClick} progress={progress} saved={saved} mode={mode} className={styles.Script} id={id} />
+        <Player seekTo={seekTo} onProgress={onProgress} className={styles.Player} id={id} />
       </div>
     </div>
   );

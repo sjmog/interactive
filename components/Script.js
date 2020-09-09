@@ -31,7 +31,8 @@ export default function Script(props) {
                 saved={props.saved}
                 start={parseFloat(caption.$.start)}
                 mode={props.mode}
-                end={parseFloat(caption.$.start) + parseFloat(caption.$.dur)} />)
+                end={parseFloat(caption.$.start) + parseFloat(caption.$.dur)}
+                onClick={props.onCaptionClick} />)
     })
   }
 
