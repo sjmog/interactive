@@ -30,7 +30,7 @@ export default function App(props) {
         setSaved([...saved, progress]);
       }
 
-      if (event.keyCode === 82) {
+      if (event.keyCode === 68) {
         event.preventDefault();
         toggleMode();
       }
@@ -43,8 +43,10 @@ export default function App(props) {
 
   return(
     <div className={styles.App}>
-      <UrlInput onChange={setId} id={id} />
-      <Instructions />
+      <div className={styles.AppHeader}>
+        <UrlInput onChange={setId} id={id} />
+        <Instructions />
+      </div>
       <div className={styles.AppContainer}>
         <Script onCaptionClick={onCaptionClick} progress={progress} saved={saved} mode={mode} className={styles.Script} id={id} />
         <Player seekTo={seekTo} onProgress={onProgress} className={styles.Player} id={id} />

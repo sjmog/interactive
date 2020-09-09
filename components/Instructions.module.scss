@@ -2,4 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 1rem;
+  opacity: 0.5;
+}
+
+.Instruction {
+  display: flex;
+  align-items: center;
+
+  figure {
+    margin-right: 1rem;
+  }
+
+  img {
+    height: 30px;
+    width: 30px;
+  }
 }

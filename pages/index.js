@@ -1,21 +1,17 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 import App from '../components/App'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Interactive</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <App />
       </main>
-
-      <footer className={styles.footer}>
-      </footer>
     </div>
   )
 }

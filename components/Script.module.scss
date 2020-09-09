@@ -1,5 +1,10 @@
 .Script {
-  padding: 1rem;
+  position: absolute;
+  top: 150px;
+  left: 0;
+  width: 38.2vw;
+  height: calc(100vh - 150px);
+  padding: 2rem 0 0 3rem;
 }
 
 .Script-watch {

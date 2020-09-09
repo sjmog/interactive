@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import ReactPlayer from 'react-player'
+import styles from './Player.module.scss'
 
 export default function Player(props) {
   const player = useRef(null);
@@ -13,6 +14,8 @@ export default function Player(props) {
   }, [props.seekTo])
 
   return(
-    <ReactPlayer playing={playing} ref={player} onProgress={props.onProgress} className={props.className} url={`https://www.youtube.com/watch?v=${props.id}`} />
+    <div className={styles.Player}>
+      <ReactPlayer playing={playing} ref={player} onProgress={props.onProgress} className={props.className} url={`https://www.youtube.com/watch?v=${props.id}`} />
+    </div>
   );
 }

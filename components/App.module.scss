@@ -5,6 +5,20 @@
   justify-content: center;
 }
 
+.AppHeader {
+  height: 150px;
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .AppContainer {
   display: flex;
 }
@@ -15,4 +29,5 @@
 
 .Player {
   width: 68.2vw;
+  position: fixed;
 }

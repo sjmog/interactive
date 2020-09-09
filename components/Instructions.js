@@ -4,9 +4,25 @@ import styles from './Instructions.module.scss'
 export default function Instructions(props) {
   return(
     <div className={styles.Instructions}>
-      <p>Press "S" to make a note of the current content.</p>
-      <p>Press "R" to review all the notes you made.</p>
-      <p>Click on a caption to go to that point in the video.</p>
+      <div className={styles.Instruction}>
+        <figure>
+          <img src="s-key.png" />
+        </figure>
+
+        <figcaption>
+          Mark the current point.
+        </figcaption>
+      </div>
+
+      <div className={styles.Instruction}>
+        <figure>
+          <img src="d-key.png" />
+        </figure>
+
+        <figcaption>
+          Review your marks.
+        </figcaption>
+      </div>
     </div>
   )
 }
