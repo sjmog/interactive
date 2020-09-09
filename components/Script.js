@@ -5,9 +5,11 @@ import styles from './Script.module.scss'
 
 export default function Script(props) {
   const NULL_CAPTION = {
-    "start": 0,
-    "dur": 0,
-    "text": "Loading"
+    "_": "Loading",
+    "$": {
+      "start": 0,
+      "dur": 0
+    }
   }
 
   const [captions, setCaptions] = useState([NULL_CAPTION]);
@@ -16,8 +18,10 @@ export default function Script(props) {
     return captions.map((caption, index) => {
       return(<Caption 
                 key={`caption-${index}`} 
-                text={caption._} 
-                {...caption.$} />)
+                text={caption._}
+                progress={props.progress}
+                start={parseFloat(caption.$.start)}
+                end={parseFloat(caption.$.start) + parseFloat(caption.$.dur)} />)
     })
   }
 
@@ -29,6 +33,10 @@ export default function Script(props) {
             error  => console.log(error.message)
           );
   }, [])
+
+  useEffect(() => {
+    console.log(props.progress)
+  }, [props.progress])
 
   return(
     <article className={`${styles.Script} ${props.className}`}>
