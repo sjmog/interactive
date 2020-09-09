@@ -12,6 +12,14 @@ export default function Script(props) {
     }
   }
 
+  const NO_CAPTION = {
+    "_": "No captions available.",
+    "$": {
+      "start": 0,
+      "dur": 0
+    }
+  }
+
   const [captions, setCaptions] = useState([NULL_CAPTION]);
 
   const captionComponents = () => {
@@ -31,10 +39,13 @@ export default function Script(props) {
     fetch(`https://video.google.com/timedtext?lang=en&v=${props.id}`, { method: 'POST' })
       .then(res => res.text())
       .then(
-            xml => parseString(xml, (err, captions) => setCaptions(captions.transcript.text)),
+            xml => {
+              if(!xml) return setCaptions([NO_CAPTION]);
+              parseString(xml, (err, captions) => setCaptions(captions.transcript.text));
+            },
             error  => console.log(error.message)
           );
-  }, [])
+  }, [props.id])
 
   useEffect(() => {
   }, [props.progress, props.saved])

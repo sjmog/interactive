@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import UrlInput from './UrlInput'
+import Instructions from './Instructions'
 import Script from './Script'
 import Player from './Player'
 import styles from './App.module.scss'
 
 export default function App(props) {
-  const id = 'kTvHIDKLFqc'
-
+  const [id, setId] = useState('kTvHIDKLFqc')
   const [progress, setProgress] = useState(0);
   const [saved, setSaved] = useState([]);
   const [mode, setMode] = useState('watch');
@@ -36,8 +37,12 @@ export default function App(props) {
 
   return(
     <div className={styles.App}>
-      <Script progress={progress} saved={saved} mode={mode} className={styles.Script} id={id} />
-      <Player onProgress={onProgress} className={styles.Player} id={id} />
+      <UrlInput onChange={setId} id={id} />
+      <Instructions />
+      <div className={styles.AppContainer}>
+        <Script progress={progress} saved={saved} mode={mode} className={styles.Script} id={id} />
+        <Player onProgress={onProgress} className={styles.Player} id={id} />
+      </div>
     </div>
   );
 }
