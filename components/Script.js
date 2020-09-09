@@ -20,6 +20,7 @@ export default function Script(props) {
                 key={`caption-${index}`} 
                 text={caption._}
                 progress={props.progress}
+                saved={props.saved}
                 start={parseFloat(caption.$.start)}
                 end={parseFloat(caption.$.start) + parseFloat(caption.$.dur)} />)
     })
@@ -35,8 +36,7 @@ export default function Script(props) {
   }, [])
 
   useEffect(() => {
-    console.log(props.progress)
-  }, [props.progress])
+  }, [props.progress, props.saved])
 
   return(
     <article className={`${styles.Script} ${props.className}`}>

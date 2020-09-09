@@ -1,7 +1,15 @@
 .Caption {
-
+  position: relative;
 }
 
 .CaptionCurrent {
   background: yellow;
+}
+
+.CaptionSaved {
+  &:before {
+    content: "!";
+    position: absolute;
+    left: -2rem;
+  }
 }
