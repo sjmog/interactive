@@ -36,15 +36,24 @@ export default function Script(props) {
   }
 
   useEffect(() => {
-    fetch(`https://video.google.com/timedtext?lang=en&v=${props.id}`, { method: 'POST' })
-      .then(res => res.text())
-      .then(
-            xml => {
-              if(!xml) return setCaptions([NO_CAPTION]);
-              parseString(xml, (err, captions) => setCaptions(captions.transcript.text));
-            },
-            error  => console.log(error.message)
-          );
+    fetch(`http://video.google.com/timedtext?type=list&v=${ props.id }`)
+      .then(response => response.text())
+      .then(xml => {
+        if(!xml) return props.onReady(false);
+        parseString(xml, (err, res) => {
+          const trackId = res.transcript_list.track[0].$.id;
+          const trackLang = res.transcript_list.track[0].$.lang_code;
+
+          fetch(`http://video.google.com/timedtext?type=track&v=${props.id}&id=${trackId}&lang=${trackLang}`)
+            .then(response => response.text())
+            .then(xml => { 
+              parseString(xml, (err, res) => {
+                if(!xml) return setCaptions([NO_CAPTION]);
+                setCaptions(res.transcript.text);
+              })
+            })
+        })
+      })
   }, [props.id])
 
   useEffect(() => {
