@@ -11,8 +11,8 @@ export default function Caption(props) {
   }
 
   return(
-    <div className={`${styles.Caption} ${isCurrent(props.progress) && styles.CaptionCurrent} ${isSaved() && styles.CaptionSaved}`}>
-      {props.text}
-    </div>
+    <div 
+      className={`${styles.Caption} ${isCurrent(props.progress) && styles.CaptionCurrent} ${isSaved() && styles.CaptionSaved}`}
+      dangerouslySetInnerHTML={{ __html: props.text }} />
   )
 }

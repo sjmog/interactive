@@ -11,6 +11,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <p>Press "S" to make a note of the current content.</p>
         <App />
       </main>
 
