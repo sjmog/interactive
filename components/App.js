@@ -30,7 +30,7 @@ export default function App(props) {
         setSaved([...saved, progress]);
       }
 
-      if (event.keyCode === 13) {
+      if (event.keyCode === 82) {
         event.preventDefault();
         toggleMode();
       }

@@ -3,7 +3,7 @@ import styles from './Caption.module.scss'
 
 export default function Caption(props) {
   const isCurrent = (time) => {
-    return (time > props.start) && (time < props.end)
+    return (time >= props.start - 0.1) && (time < props.end)
   }
 
   const isSaved = () => {
