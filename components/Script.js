@@ -42,10 +42,9 @@ export default function Script(props) {
       .then(xml => {
         if(!xml) return props.onReady(false);
         parseString(xml, (err, res) => {
-          const trackId = res.transcript_list.track[0].$.id;
-          const trackLang = res.transcript_list.track[0].$.lang_code;
-
-          fetch(`http://video.google.com/timedtext?type=track&v=${props.id}&id=${trackId}&lang=${trackLang}`)
+          // Just get the English track for now
+          // id param isn't required, but lang param is
+          fetch(`http://video.google.com/timedtext?type=track&v=${props.id}&lang=en`)
             .then(response => response.text())
             .then(xml => { 
               parseString(xml, (err, res) => {
