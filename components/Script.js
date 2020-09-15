@@ -37,14 +37,14 @@ export default function Script(props) {
   }
 
   useEffect(() => {
-    fetch(`http://video.google.com/timedtext?type=list&v=${ props.id }`)
+    fetch(`https://video.google.com/timedtext?type=list&v=${ props.id }`)
       .then(response => response.text())
       .then(xml => {
         if(!xml) return props.onReady(false);
         parseString(xml, (err, res) => {
           // Just get the English track for now
           // id param isn't required, but lang param is
-          fetch(`http://video.google.com/timedtext?type=track&v=${props.id}&lang=en`)
+          fetch(`https://video.google.com/timedtext?type=track&v=${props.id}&lang=en`)
             .then(response => response.text())
             .then(xml => { 
               parseString(xml, (err, res) => {
