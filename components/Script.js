@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import Caption from './Caption'
 import { parseString } from 'xml2js'
+import { xmlToSentences } from './utils'
 import styles from './Script.module.scss'
 
 export default function Script(props) {
   const NULL_CAPTION = {
-    "_": "Loading",
-    "$": {
-      "start": 0,
-      "dur": 0
-    }
+    "text": "Loading",
+    "start": 0,
+    "dur": 0
   }
 
   const NO_CAPTION = {
-    "_": "No captions available.",
-    "$": {
-      "start": 0,
-      "dur": 0
-    }
+    "text": "No captions available.",
+    "start": 0,
+    "dur": 0
   }
 
   const [captions, setCaptions] = useState([NULL_CAPTION]);
@@ -26,12 +23,12 @@ export default function Script(props) {
     return captions.map((caption, index) => {
       return(<Caption 
                 key={`caption-${index}`} 
-                text={caption._}
+                text={caption.text}
                 progress={props.progress}
                 saved={props.saved}
-                start={parseFloat(caption.$.start)}
+                start={caption.start}
                 mode={props.mode}
-                end={parseFloat(caption.$.start) + parseFloat(caption.$.dur)}
+                end={caption.start + caption.dur}
                 onClick={props.onCaptionClick} />)
     })
   }
@@ -49,7 +46,7 @@ export default function Script(props) {
             .then(xml => { 
               parseString(xml, (err, res) => {
                 if(!xml) return setCaptions([NO_CAPTION]);
-                setCaptions(res.transcript.text);
+                setCaptions(xmlToSentences(res.transcript.text));
               })
             })
         })
